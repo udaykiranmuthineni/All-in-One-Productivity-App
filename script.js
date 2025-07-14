@@ -22,10 +22,20 @@ window.addEventListener('load', () => {
         localStorage.setItem("expenses", JSON.stringify(loadedExpenses || []));
       }
 
-     const last = localStorage.getItem("lastSection") || "calendar";
-const btn = document.querySelector(`.menu-btn[onclick*="showSection('${last}'"]`);
-if (btn) showSection(last, btn);
+      // Load last visited section (default to calendar)
+      let last = localStorage.getItem("lastSection") || "calendar";
+      localStorage.setItem("lastSection", last);
 
+      const btn = document.querySelector(`.menu-btn[onclick*="showSection('${last}')"]`);
+      if (btn) showSection(last, btn);
+
+      // 🛠 Fix: Manually render calendar if it's the default section
+      if (last === "calendar") {
+        renderCalendar();
+        renderMonthlyTasks();
+        renderBirthdayList();
+        showTodayTasks();  // Optional if you have DayView feature
+      }
     })
     .catch(err => {
       console.error("❌ Error loading JSON files:", err);
