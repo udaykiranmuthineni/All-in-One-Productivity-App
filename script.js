@@ -22,7 +22,7 @@ window.addEventListener('load', () => {
         localStorage.setItem("expenses", JSON.stringify(loadedExpenses || []));
       }
 
-     const last = localStorage.getItem("lastSection") || "todo";
+     const last = localStorage.getItem("lastSection") || "calendar";
 const btn = document.querySelector(`.menu-btn[onclick*="showSection('${last}'"]`);
 if (btn) showSection(last, btn);
 
@@ -1001,4 +1001,6 @@ window.addEventListener('load', () => {
       console.error("Error loading JSON files:", err);
     });
 });
+
+
 
