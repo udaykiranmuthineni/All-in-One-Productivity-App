@@ -1,0 +1,36 @@
+[
+  { "id": 1, "title": "UI Design Tips", "body": "Keep spacing even and avoid cramming. Font sizes should clearly indicate priority. Don’t go crazy with colors.", "tag": "Design", "pinned": true },
+  { "id": 2, "title": "React Todo Ideas", "body": "Would be nice to drag and drop tasks between columns like Trello. Maybe use React DnD?", "tag": "Dev", "pinned": false },
+  { "id": 3, "title": "Team Meeting Recap", "body": "Talked about final deployment phase. Need to finish backend auth and test mobile responsiveness.", "tag": "Work", "pinned": false },
+  { "id": 4, "title": "Weekly Grocery List", "body": "Milk, Bread, Eggs, Coffee, Tomatoes, Onions, Soap, Rice, Curd, Biscuits", "tag": "Groceries", "pinned": false },
+  { "id": 5, "title": "Monthly Goals", "body": "Try waking up before 7am, walk daily, and publish one blog post.", "tag": "Goals", "pinned": false },
+  { "id": 6, "title": "Project Brainstorm", "body": "A minimalist journal app that works offline and syncs to Google Drive.", "tag": "Ideas", "pinned": true },
+  { "id": 7, "title": "Goa Trip Plan", "body": "Book flights, check Airbnb, rent a scooter near Baga Beach.", "tag": "Travel", "pinned": false },
+  { "id": 8, "title": "Job Search Prep", "body": "Update resume, revise JS concepts, do 1 LeetCode every morning.", "tag": "Career", "pinned": false },
+  { "id": 9, "title": "Atomic Habits Notes", "body": "Habits compound. Focus on identity change, not goals. 1% better daily.", "tag": "Reading", "pinned": false },
+  { "id": 10, "title": "Gift Ideas for Mom", "body": "Framed family photo, scented candles, new bedsheet set.", "tag": "Personal", "pinned": false },
+  { "id": 11, "title": "Rent & Bills", "body": "Paid rent ₹12,000. Electricity ₹1,950 due next Friday.", "tag": "Finance", "pinned": false },
+  { "id": 12, "title": "VS Code Shortcuts", "body": "Ctrl + D to select next match. Ctrl + Shift + L to select all matches.", "tag": "Productivity", "pinned": false },
+  { "id": 13, "title": "Health Tracking", "body": "Drinking 2L water. Walked 3km. Skipped junk food for 3 days!", "tag": "Wellness", "pinned": false },
+  { "id": 14, "title": "Dev Tools", "body": "Bookmark: github.com/udaykiranmuthineni/tools – nice CLI utils there.", "tag": "Dev", "pinned": false },
+  { "id": 15, "title": "Next App Steps", "body": "Clean up localStorage logic. Add pie chart filter to expenses.", "tag": "Dev", "pinned": false },
+  { "id": 16, "title": "Startup Note", "body": "A tool that tracks interview feedback across companies and gives patterns.", "tag": "Pitch", "pinned": false },
+  { "id": 17, "title": "Quotes That Stick", "body": "“Motivation is overrated. Environment matters more.”", "tag": "Inspiration", "pinned": false },
+  { "id": 18, "title": "Resume Tweaks", "body": "Added impact verbs. Rewrote project bullet points for clarity.", "tag": "Career", "pinned": false },
+  { "id": 19, "title": "Mentor Reminder", "body": "Send the portfolio draft by Tuesday and ask for review before Friday.", "tag": "Work", "pinned": true },
+  { "id": 20, "title": "Bug Fix: Expense Dropdown", "body": "Was resetting on each render. Fixed with dataset.userSelected check.", "tag": "Dev", "pinned": false },
+
+  { "id": 21, "title": "Plumbing Fix Bill", "body": "", "tag": "Repairs", "pinned": false },           
+  { "id": 22, "title": "Study Topics for Week", "body": "", "tag": "Study", "pinned": false },          
+  { "id": 23, "title": "Evening Checklist", "body": "", "tag": "Daily", "pinned": false },             
+
+  { "id": 24, "title": "", "body": "Refactor notes section to reuse card layout from ToDo. Fix height issue.", "tag": "Dev", "pinned": false },  
+  { "id": 25, "title": "", "body": "Call electrician to fix bathroom light. Buy new CFL if needed.", "tag": "Home", "pinned": true },          
+  { "id": 26, "title": "", "body": "Add category-wise filtering to the dashboard panel using dropdown state.", "tag": "Ideas", "pinned": false }, 
+
+  { "id": 27, "title": "Daily Reflection", "body": "Felt more productive. Got calendar filter bug fixed finally.", "tag": "Journal", "pinned": false },
+  { "id": 28, "title": "Mood Tracker", "body": "Mostly calm today. Avoided distractions. Slept on time yesterday.", "tag": "Wellness", "pinned": true },
+  { "id": 29, "title": "Funny Bug", "body": "Typed 'lenght' instead of 'length'... again. 😅", "tag": "Debug", "pinned": false },
+  { "id": 30, "title": "2025 Goals", "body": "Launch 2 projects. Read 12 books. Stay consistent with habits.", "tag": "Goals", "pinned": false }
+]
+

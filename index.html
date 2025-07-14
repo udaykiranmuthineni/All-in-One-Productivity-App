@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced ToDo App</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="row g-0">
+    <!-- Sidebar -->
+    <div class="col-md-2 sidebar p-3 bg-light">
+      <h5 class="text-primary text-center">Hi Uday Kiran 👋</h5>
+      <!-- name =  DailyPilot – Advanced Productivity Manager -->
+        <!-- DailyPilot – All-in-One Productivity App -->
+      <div class="d-grid gap-2 mt-4">
+        <button class="menu-btn Selected" onclick="showSection('calendar', this)">📅 Calendar</button>
+        <button class="menu-btn" onclick="showSection('todo', this)">📋 ToDo List</button>
+        <button class="menu-btn" onclick="showSection('notes', this)">📝 Notes</button>
+        
+        <button class="menu-btn" onclick="showSection('expense-tracker-section', this)">💰 Expense Tracker</button>
+
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="col-md-10 p-4">
+      <!-- ToDo Section -->
+      <div id="todo" class="content-section">
+        <h3>📝 ToDo List</h3>
+
+        <input type="text" id="searchInput" class="form-control mb-3" placeholder="🔍 Search tasks..." oninput="renderTasks()" />
+
+        <!-- Form -->
+        <div id="formSection" class="card p-3 mb-4">
+          <form id="taskForm">
+            <input type="hidden" id="taskId" />
+            <div class="row g-2">
+              <div class="col-md-4">
+                <input type="text" id="taskTitle" class="form-control" placeholder="Task Title" required />
+              </div>
+              <div class="col-md-2">
+                <select id="taskPriority" class="form-select">
+                  <option value="">Select Priority</option>
+                  <option value="Low">Low 🔵</option>
+                  <option value="Medium">Medium 🟡</option>
+                  <option value="High">High 🔴</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <input type="date" id="taskDueDate" class="form-control" />
+              </div>
+              <div class="col-md-2">
+                <select id="taskStatus" class="form-select" required>
+                  <option value="To Do">To Do</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Done">Done</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <input type="text" id="taskTag" class="form-control" placeholder="Tag (optional)" />
+              </div>
+            </div>
+            <div class="mt-3 d-flex justify-content-end gap-2">
+              <button type="submit" class="btn btn-primary">💾 Save Task</button>
+              <button type="button" class="btn btn-secondary" onclick="form.reset()">❌ Clear</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Task Grid -->
+        <div id="taskList" class="row g-3"></div>
+      </div>
+
+      <!-- Notes Section -->
+      <div id="notes" class="content-section">
+        <h3>🗒️ Notes</h3>
+
+<div class="card p-3 mb-3">
+  <form id="noteForm">
+    <!-- Edit Mode Banner -->
+    <div id="editBanner" class="alert alert-info d-none py-2 px-3 mb-2">
+      ✏️ Editing note…
+      <button type="button" class="btn btn-sm btn-outline-dark ms-2" onclick="cancelEditNote()">Cancel</button>
+    </div>
+
+    <input type="hidden" id="noteId" />
+    
+    <div class="mb-2">
+      <input type="text" id="noteTitle" class="form-control" placeholder="Note Title (optional)" />
+    </div>
+    <div class="mb-2">
+      <textarea id="noteBody" class="form-control" rows="4" placeholder="Write your note..."></textarea>
+    </div>
+    <div class="row mb-2">
+      <div class="col-md-6">
+        <input type="text" id="noteTag" class="form-control" placeholder="Tag (e.g. Work, Idea)" />
+      </div>
+      <div class="col-md-6 d-flex align-items-center">
+        <input type="checkbox" id="notePin" class="form-check-input me-2" />
+        <label for="notePin" class="form-check-label">📌 Pin this note</label>
+      </div>
+    </div>
+    <div class="text-end">
+      <button type="submit" id="noteSubmitBtn" class="btn btn-success">➕ Add Note</button>
+    </div>
+  </form>
+</div>
+<!-- Notes List -->
+<div id="noteList" class="row g-3"></div>
+      </div>
+
+
+
+      <!-- calender section -->
+<!-- 📅 Calendar Section -->
+<div id="calendar" class="content-section active">
+  <h3 class="mb-3 text-primary">📅 Calendar View</h3>
+
+  <div class="row">
+    <!-- 🗓️ Calendar Column (8 columns) -->
+    <div class="col-md-8">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <button class="btn btn-outline-secondary" onclick="changeMonth(-1)">← Prev</button>
+        <h4 id="calendarMonth" class="mb-0"></h4>
+        <button class="btn btn-outline-secondary" onclick="changeMonth(1)">Next →</button>
+      </div>
+
+      <!-- Weekdays Grid -->
+      <div class="calendar-grid bg-light fw-bold text-center mb-1">
+        <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div>
+        <div>Thu</div><div>Fri</div><div>Sat</div>
+      </div>
+
+      <!-- Calendar Dates Grid -->
+      <div class="calendar-grid border" id="calendarGrid"></div>
+
+      <!-- 📌 Tasks for Selected Month -->
+      <div class="mt-4">
+        <h5 id="selectedDateTitle">📌 Tasks on: <span id="selectedDateLabel">None</span></h5>
+        <ul class="list-group mt-2" id="tasksList"></ul>
+      </div>
+    </div>
+
+   <!-- 🎂 Upcoming Events Column (4 columns) -->
+<div class="col-md-4">
+  <!-- 📥 Add Birthday/Event Box (Default view) -->
+  <div id="addEventBox">
+    <div class="card mb-3">
+      <div class="card-header">➕ Add Birthday/Event</div>
+      <div class="card-body">
+        <form id="birthdayForm">
+          <div class="mb-2">
+            <input type="text" id="bdayName" class="form-control" placeholder="Name" required />
+          </div>
+          <div class="mb-2">
+            <input type="date" id="bdayDate" class="form-control" required />
+          </div>
+          <div class="mb-2">
+            <select id="bdayType" class="form-select">
+              <option value="Birthday">Birthday</option>
+              <option value="Anniversary">Anniversary</option>
+              <option value="Event">Event</option>
+            </select>
+          </div>
+          <div class="mb-2">
+            <input type="text" id="bdayNote" class="form-control" placeholder="Note (optional)" />
+          </div>
+          <button type="submit" class="btn btn-sm btn-success w-100">🎉 Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🧠 Smart Day View Panel (replaces addEventBox only) -->
+  <div id="dayViewPanel" class="card d-none mb-3">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <span id="dayViewTitle">Selected Date</span>
+      <button class="btn btn-sm btn-outline-secondary" onclick="hideDayView()">✖</button>
+    </div>
+    <div class="card-body">
+      <h6>📝 ToDos</h6>
+      <ul id="dayTasksList" class="list-group mb-3"></ul>
+
+      <h6>🎉 Birthdays & Events</h6>
+      <ul id="dayBirthdaysList" class="list-group"></ul>
+    </div>
+  </div>
+
+  <!-- 🎈 Always-visible Upcoming Events -->
+  <div class="card">
+    <div class="card-header">🎈 Upcoming Birthdays & Events</div>
+    <ul class="list-group list-group-flush" id="birthdayList">
+      <!-- Dynamic -->
+    </ul>
+  </div>
+</div>      
+</div>
+</div>
+
+<!-- expense section -->
+
+<div id="expense-tracker-section" class="content-section" style="display: none;">
+  <h3 class="mb-3 text-success">💰 Expense Tracker</h3>
+
+  <div class="row">
+    <!-- 🧾 Left Side: Form + List (66%) -->
+    <div class="col-md-8">
+      <!-- 🧾 Form -->
+      <div class="card p-3 mb-3">
+        <form id="expenseForm">
+          <input type="hidden" id="expense-id" />
+          <div class="row g-2 align-items-end">
+            <div class="col-md-4">
+              <input type="text" id="expense-title" class="form-control" placeholder="Expense Title (optional)" />
+            </div>
+            <div class="col-md-3">
+              <input type="number" id="expense-amount" class="form-control" placeholder="Amount ₹" required />
+            </div>
+            <div class="col-md-3">
+              <input type="date" id="expense-date" class="form-control" />
+            </div>
+            <div class="col-md-2">
+              <select id="expense-category" class="form-select">
+                <option value="">Category</option>
+                <option value="Food">🍔 Food</option>
+                <option value="Travel">✈️ Travel</option>
+                <option value="Shopping">🛍️ Shopping</option>
+                <option value="Bills">💡 Bills</option>
+                <option value="Other">📦 Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="mt-3 text-end">
+            <button type="submit" class="btn btn-success">💾 Save Expense</button>
+          </div>
+        </form>
+      </div>
+
+      
+      <!-- 📋 Expense List -->
+      <div class="card p-3">
+        <h5 class="mb-3">📋 Expenses</h5>
+        <ul id="expense-list" class="list-group"></ul>
+      </div>
+    </div>
+<!-- Expense Section -->
+ 
+    <!-- 📊 Right Side: Summary + Chart (33%) -->
+    <div class="col-md-4">
+      <!-- 💸 Summary Card -->
+      <div class="card text-bg-light p-3 mb-3">
+        <h5 class="mb-2">💸 Summary</h5>
+        <p class="mb-1">Total Spent: ₹<span id="total-expense">0</span></p>
+        <p class="mb-0">Last Month: ₹<span id="last-month-expense">0</span></p>
+      </div>
+
+      <!-- 📅 Month Filter -->
+      <div class="mb-3">
+        <select id="filter-month" class="form-select" onchange="renderExpenses()">
+          <option value="">📅 All Months</option>
+        </select>
+      </div>
+
+      <!-- 📊 Chart Box -->
+      <div class="card p-3">
+  <h6 class="mb-3">📊 Category-wise Chart</h6>
+  <div style="height: 240px;">
+    <canvas id="expenseChart" style="height: 100%; width: 100%;"></canvas>
+  </div>
+</div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<!-- ================= -->
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+
+
